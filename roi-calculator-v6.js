@@ -386,8 +386,8 @@ jQuery(document).ready(function ($) {
     
 
     $.ajax({
-      type: method,
-      url: action,
+      type: "POST",
+      url: "",
       data: {
         action: "roiCalculator", 
         leads: inBoundLeads ? inBoundLeads : 0,
