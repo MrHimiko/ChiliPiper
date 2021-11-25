@@ -6,7 +6,7 @@ let html = `
 
         <div class="grid__column grid__column--12 grid__column--6@small grid__column--5@large">
           <!-- FIRST CALC -->
-          <div class="price__calc price__calc-2b active">
+          <div class="price__calc price__calc-2b">
             <h4>Concierge</h4>
 
             <div class="content">
@@ -35,8 +35,7 @@ let html = `
             </div>
           </div>
           <!-- SECOND CALC -->
-          <div class="
-          ">
+          <div class="price__calc price__calc-2b">
             <h4>Distro</h4>
 
             <div class="content">
@@ -110,7 +109,7 @@ let html = `
             </div>
           </div>
           <!-- FIFTH CALC -->
-          <div class="price__calc price__calc-event price__calc-2b active">
+          <div class="price__calc price__calc-event price__calc-2b">
             <h4>Events</h4>
 
             <div class="content">
