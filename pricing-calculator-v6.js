@@ -259,7 +259,7 @@ let html = `
               </div><!-- .column-->
             </div>
 
-            <a href="https://www.chilipiper.com/request-demo" class="button button--primary tt-upper">Book a Demo</a>
+            <a href="/request-demo" class="button button--primary tt-upper">Book a Demo</a>
           </div><!-- .box-->
         </div>
       </div>
