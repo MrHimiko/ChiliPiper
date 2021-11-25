@@ -437,9 +437,12 @@ function ajaxHSData () {
 }
 
 function sendAjaxHS (formID, data, step) {
+  
   var xhr = new XMLHttpRequest()
-  var url = 'https://api.hsforms.com/submissions/v3/integration/submit/' + chili.portalId + '/' + formID
+  var url = 'https://api.hsforms.com/submissions/v3/integration/submit/' + chili.portalId + '/' + formID;
+  console.log(url)
   var finalData = JSON.stringify(data)
+  console.log(finalData)
   xhr.open('POST', url)
   xhr.setRequestHeader('Content-type', 'application/json')
   xhr.send(finalData)
