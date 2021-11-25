@@ -6,7 +6,7 @@ let html = `
 
         <div class="grid__column grid__column--12 grid__column--6@small grid__column--5@large">
           <!-- FIRST CALC -->
-          <div class="price__calc price__calc-2b active">
+          <div class="price__calc price__calc-2b">
             <h4>Concierge</h4>
 
             <div class="content">
@@ -35,7 +35,7 @@ let html = `
             </div>
           </div>
           <!-- SECOND CALC -->
-          <div class="price__calc price__calc-2b active">
+          <div class="price__calc price__calc-2b ">
             <h4>Distro</h4>
 
             <div class="content">
@@ -55,7 +55,7 @@ let html = `
             </div>
           </div>
           <!-- THIRD CALC -->
-          <div class="price__calc price__calc-2b active">
+          <div class="price__calc price__calc-2b ">
             <h4>Concierge + Distro Bundle</h4>
             <div class="content">
               <div class="switch switch--horizontal switch--horizontal__checkbox">
@@ -82,7 +82,7 @@ let html = `
             </div>
           </div>
           <!-- FOURTH CALC -->
-          <div class="price__calc price__calc-2b active">
+          <div class="price__calc price__calc-2b ">
             <h4>Instant Booker</h4>
             <div class="content">
               <div class="switch switch--horizontal switch--horizontal__checkbox">
@@ -280,7 +280,8 @@ $(".get-calc-from-js").html(html);
 
 
   $(document).on('click', '.price__calc-2b h4', function () {
-    $(this).parent().toggleClass('active')
+    $(this).parent().toggleClass('
+                                 ')
   })
 
   var seats_default = $('input.seats'),
