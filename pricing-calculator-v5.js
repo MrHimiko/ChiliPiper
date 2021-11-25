@@ -35,7 +35,7 @@ let html = `
             </div>
           </div>
           <!-- SECOND CALC -->
-          <div class="price__calc price__calc-2b">
+          <div class="price__calc price__calc-2b active">
             <h4>Distro</h4>
 
             <div class="content">
