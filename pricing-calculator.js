@@ -109,7 +109,7 @@ let html = `
             </div>
           </div>
           <!-- FIFTH CALC -->
-          <div class="price__calc price__calc-event price__calc-2b active">
+          <div class="price__calc price__calc-event price__calc-2b">
             <h4>Events</h4>
 
             <div class="content">
@@ -364,7 +364,15 @@ $(".get-calc-from-js").html(html);
     if ($('input[name="plan"]:checked').val() == 'monthly') {
       $('#checkked-5').removeAttr('checked')
       $('.price__box--events').css('display', 'none')
-      $('.price__calc-event').addClass('off-cat').removeClass('active')
+      $('.price__calc-event').addClass('off-cat').removeClass('
+                                                              
+                                                              
+                                                              
+                                                              
+                                                              
+                                                              
+                                                              
+                                                              ')
       seats7.attr('readonly', 'readonly')
     } else {
       $('.price__calc-event').removeClass('off-cat')
