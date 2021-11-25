@@ -280,8 +280,7 @@ $(".get-calc-from-js").html(html);
 
 
   $(document).on('click', '.price__calc-2b h4', function () {
-    $(this).parent().toggleClass('
-                                 ')
+    $(this).parent().toggleClass('active')
   })
 
   var seats_default = $('input.seats'),
