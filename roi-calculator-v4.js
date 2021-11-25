@@ -51,114 +51,120 @@ let html = `
     </div>
   </div>
 </div>
-<div class="container container--center container--large wrapper-small">
+
+<section class="hidden js-show-result">
+<?php
+
+    <div class="container container--center container--large wrapper-small js-calculator-roi" id="show-result">
+      <div class="grid grid--center grid--waffle grid--price price">
+        <div class="grid__column id__column--12 grid__column--10@large">
+          <div class="roi-results">
+            <p class="heading h2 text-center">Your ROI with Chili Piper</p>
+            <div class="paragraph text-center">
+              <p>Your estimated return on investment with Chili Piper is <span class="month-revenue"></span> per <br>month and <span class="year-revenue"></span> per year. That’s a return of <span class="revenue-diff"></span>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid__column grid__column--12 grid__column--4@large roi-results order-2 small-extra-padding extra-minus-margin">
+          <h3 class="d-lg-block d-none">Lead to Meeting - Conversion Rate</h3>
+          <p>Allowing customers to book a meeting at the moment they’re interested is proven to increase the number of booked meetings. </p>
+          <p>Based on our customer average, we estimate we can improve your lead to meeting rate <br>from <span class="rate-from no-bg"></span> to 
+          <span class="rate-to-wrapper"><input type="text" class="rate-to" data-min=""></span>
+        </p>
+        </div>
+        <div class="grid__column grid__column--12 grid__column--6@large order-1 roi-results">
+          <h3 class="d-lg-none d-block">Lead to Meeting - Conversion Rate</h3>
+          <div id="chart_div"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="linear-gray-bg">
+      <div class="container container--center container--large wrapper-small js-calculator-roi">
+        <div class="grid grid--center grid--waffle grid--price price">
+          <div class="grid__column grid__column--12 grid__column--10@large">
+            <div class="roi-results rois-results--next">
+              <div class="paragraph paragraph--small text-center">
+                <p>Increasing your lead to meeting rate will lead to <span class="roi_leads_to"></span>, more booked meetings and <span class="roi_closed_deals"></span> more <br>closed deals per month.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid__column grid__column--12 grid__column--6@large roi-results">
+          <h3 class="d-lg-none d-block">Inbound Monthly Revenue</h3>
+          <div id="chart_div_finance"></div>
+          </div>
+          <div class="grid__column grid__column--12 grid__column--4@large roi-results extra-minus-margin">
+          <h3 class="d-lg-block d-none">Inbound Monthly Revenue</h3>
+            <p>Based on the average sales price you input, <br>you will earn an additional <span class="roi_additional"></span> per <br>month in revenue with Chili Piper. That’s <br><span class="roi_additional_year"></span> in additional revenue per year.</p>
+          </div>
+          <div class="roi-results">
+            <div class="paragraph paragraph--small text-center">
+              <p>Your estimated cost is <span class="roi_cost"></span> per month, which means your return on investment is <br><span class="roi_cost_add_month"></span> per month and <span class="roi_cost_add_year"></span> per year. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+ 
+<div class="container container--center container--large wrapper-small js-calculator-roi" id="show-result">
   <div class="grid grid--center grid--waffle grid--price price">
-    <div class="grid__column grid__column--12 grid__column--6@small">
-      <div class="section--rio__form">
-        <form>
-          <div class="paragraph paragraph--small">
-            <h3 class="text-center">Enter your inbound marketing metrics</h3>
-          </div>
-          <div class="form-group">
-            <label>Monthly inbound leads</label>
-            <input type="text" name="roi_leads" placeholder="10000" id="roi_leads" required/>
-          </div>
+    <div class="grid__column id__column--12 grid__column--10@large">
+      <div class="roi-results">
+        <p class="heading h2 text-center">Your ROI with Chili Piper</p>
+        <div class="paragraph text-center">
+          <p>Your estimated return on investment with Chili Piper is <span class="month-revenue"></span> per <br>month and <span class="year-revenue"></span> per year. That’s a return of <span class="revenue-diff"></span>.</p>
+        </div>
+      </div>
+    </div>
 
-          <div class="form-group">
-            <label>Monthly booked demos</label>
-            <input type="text" name="roi_demos" placeholder="5000" id="roi_demos" equired/>
-          </div>
-
-          <div class="form-group">
-            <label class="tooltip-label">Average win rate <span class="tooltip-sign">?</span><span class="tooltip">This is the percent of your booked meetings that are closed-won. If you’re not sure, use 5%.</span></label>
-            <input type="text" name="roi_rate" placeholder="5" id="roi_rate" required/>
-            <span class="append-field">%</span>
-          </div>
-
-          <div class="form-group">
-            <label>Average sales price</label>
-            <input type="text" name="roi_price" placeholder="5000" id="roi_price"  required/>
-            <span class="append-field">$</span>
-          </div>
-
-          <div class="form-group">
-            <label>Number of sales reps</label>
-            <input type="text" name="roi_reps" placeholder="10" id="roi_reps" required/>
-          </div>
-
-     
-          <div class="form-group">
-            <input type="email" name="roi_email" placeholder="Your email address" id="roi_email" required/>
-          </div>
-
-
-          <div class="form-group">
-            <button type="submit" class="button button--primary tt-upper" id="roi-calculate">Calculate</button>
-          </div>
-          <div class="paragraph paragraph--small">
-            <p>Chili Piper <a href="https://www.chilipiper.com/privacy-policy" rel="noopener" target="_blank">Privacy Policy</a></p>
-            <a href="#" class="form-save-link d-none" rel="noopener">Share Results</a>
-            <span class="form-save-copied d-none"> - Link copied!</span>
-          </div>
-        </form>
-      </div> <!-- form -->
+    <div class="grid__column grid__column--12 grid__column--4@large roi-results order-2 small-extra-padding extra-minus-margin">
+      <h3 class="d-lg-block d-none">Lead to Meeting - Conversion Rate</h3>
+      <p>Allowing customers to book a meeting at the moment they’re interested is proven to increase the number of booked meetings. </p>
+      <p>Based on our customer average, we estimate we can improve your lead to meeting rate <br>from <span class="rate-from no-bg"></span> to 
+      <span class="rate-to-wrapper"><input type="text" class="rate-to" data-min=""></span>
+    </p>
+    </div>
+    <div class="grid__column grid__column--12 grid__column--6@large order-1 roi-results">
+      <h3 class="d-lg-none d-block">Lead to Meeting - Conversion Rate</h3>
+      <div id="chart_div"></div>
     </div>
   </div>
 </div>
-<div class="container container--center container--large wrapper-small">
-  <div class="grid grid--center grid--waffle grid--price price">
-    <div class="grid__column grid__column--12 grid__column--6@small">
-      <div class="section--rio__form">
-        <form>
-          <div class="paragraph paragraph--small">
-            <h3 class="text-center">Enter your inbound marketing metrics</h3>
-          </div>
-          <div class="form-group">
-            <label>Monthly inbound leads</label>
-            <input type="text" name="roi_leads" placeholder="10000" id="roi_leads" required/>
-          </div>
 
-          <div class="form-group">
-            <label>Monthly booked demos</label>
-            <input type="text" name="roi_demos" placeholder="5000" id="roi_demos" equired/>
+<div class="linear-gray-bg">
+    <div class="container container--center container--large wrapper-small js-calculator-roi">
+      <div class="grid grid--center grid--waffle grid--price price">
+        <div class="grid__column grid__column--12 grid__column--10@large">
+          <div class="roi-results rois-results--next">
+            <div class="paragraph paragraph--small text-center">
+              <p>Increasing your lead to meeting rate will lead to <span class="roi_leads_to"></span>, more booked meetings and <span class="roi_closed_deals"></span> more <br>closed deals per month.</p>
+            </div>
           </div>
+        </div>
 
-          <div class="form-group">
-            <label class="tooltip-label">Average win rate <span class="tooltip-sign">?</span><span class="tooltip">This is the percent of your booked meetings that are closed-won. If you’re not sure, use 5%.</span></label>
-            <input type="text" name="roi_rate" placeholder="5" id="roi_rate" required/>
-            <span class="append-field">%</span>
+        <div class="grid__column grid__column--12 grid__column--6@large roi-results">
+        <h3 class="d-lg-none d-block">Inbound Monthly Revenue</h3>
+        <div id="chart_div_finance"></div>
+        </div>
+        <div class="grid__column grid__column--12 grid__column--4@large roi-results extra-minus-margin">
+        <h3 class="d-lg-block d-none">Inbound Monthly Revenue</h3>
+          <p>Based on the average sales price you input, <br>you will earn an additional <span class="roi_additional"></span> per <br>month in revenue with Chili Piper. That’s <br><span class="roi_additional_year"></span> in additional revenue per year.</p>
+        </div>
+        <div class="roi-results">
+          <div class="paragraph paragraph--small text-center">
+            <p>Your estimated cost is <span class="roi_cost"></span> per month, which means your return on investment is <br><span class="roi_cost_add_month"></span> per month and <span class="roi_cost_add_year"></span> per year. </p>
           </div>
-
-          <div class="form-group">
-            <label>Average sales price</label>
-            <input type="text" name="roi_price" placeholder="5000" id="roi_price"  required/>
-            <span class="append-field">$</span>
-          </div>
-
-          <div class="form-group">
-            <label>Number of sales reps</label>
-            <input type="text" name="roi_reps" placeholder="10" id="roi_reps" required/>
-          </div>
-
+        </div>
+      </div>
+    </div>
+  </div>
    
-          <div class="form-group">
-            <input type="email" name="roi_email" placeholder="Your email address" id="roi_email" required/>
-          </div>
 
+</section>
 
-          <div class="form-group">
-            <button type="submit" class="button button--primary tt-upper" id="roi-calculate">Calculate</button>
-          </div>
-          <div class="paragraph paragraph--small">
-            <p>Chili Piper <a href="https://www.chilipiper.com/privacy-policy" rel="noopener" target="_blank">Privacy Policy</a></p>
-            <a href="#" class="form-save-link d-none" rel="noopener">Share Results</a>
-            <span class="form-save-copied d-none"> - Link copied!</span>
-          </div>
-        </form>
-      </div> <!-- form -->
-    </div>
-  </div>
-</div>
 `;
 
 
