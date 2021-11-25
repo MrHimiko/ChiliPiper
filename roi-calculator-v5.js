@@ -1,3 +1,5 @@
+
+
 let html = `
 <div class="container container--center container--large wrapper-small">
   <div class="grid grid--center grid--waffle grid--price price">
@@ -380,11 +382,12 @@ jQuery(document).ready(function ($) {
     const closedDeals = Math.round(leadsTo * winRate/100)
     const additionalEarn = closedDeals * salesPrice
     const investmetReturn = additionalEarn - costCalc(inBoundLeads, salesReps)
+    
+    
 
     $.ajax({
-      type: "POST",
-      dataType : "json",
-      url: ajaxURL,
+      type: method,
+      url: action,
       data: {
         action: "roiCalculator", 
         leads: inBoundLeads ? inBoundLeads : 0,
@@ -403,6 +406,7 @@ jQuery(document).ready(function ($) {
         returnPoints: Math.round(investmetReturn / costCalc(inBoundLeads, salesReps)),
         inBoundMonthly: bookedDemos * winRate/100 * salesPrice
       },
+
       beforeSend: function() {
         $('#roi-calculate').text('Calculating ...')
         
