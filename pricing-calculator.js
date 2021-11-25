@@ -278,7 +278,7 @@ $(".get-calc-from-js").html(html);
 
 
 
-jQuery(document).ready(function ($) { 
+
   $(document).on('click', '.price__calc-2b h4', function () {
     $(this).parent().toggleClass('active')
   })
@@ -645,5 +645,5 @@ jQuery(document).ready(function ($) {
       price.html(String(finalRes).replace(/(.)(?=(\d{3})+$)/g,'$1,'))
     }
   }
-})
+
 
