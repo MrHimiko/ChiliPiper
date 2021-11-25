@@ -51,7 +51,114 @@ let html = `
     </div>
   </div>
 </div>
+<div class="container container--center container--large wrapper-small">
+  <div class="grid grid--center grid--waffle grid--price price">
+    <div class="grid__column grid__column--12 grid__column--6@small">
+      <div class="section--rio__form">
+        <form>
+          <div class="paragraph paragraph--small">
+            <h3 class="text-center">Enter your inbound marketing metrics</h3>
+          </div>
+          <div class="form-group">
+            <label>Monthly inbound leads</label>
+            <input type="text" name="roi_leads" placeholder="10000" id="roi_leads" required/>
+          </div>
 
+          <div class="form-group">
+            <label>Monthly booked demos</label>
+            <input type="text" name="roi_demos" placeholder="5000" id="roi_demos" equired/>
+          </div>
+
+          <div class="form-group">
+            <label class="tooltip-label">Average win rate <span class="tooltip-sign">?</span><span class="tooltip">This is the percent of your booked meetings that are closed-won. If you’re not sure, use 5%.</span></label>
+            <input type="text" name="roi_rate" placeholder="5" id="roi_rate" required/>
+            <span class="append-field">%</span>
+          </div>
+
+          <div class="form-group">
+            <label>Average sales price</label>
+            <input type="text" name="roi_price" placeholder="5000" id="roi_price"  required/>
+            <span class="append-field">$</span>
+          </div>
+
+          <div class="form-group">
+            <label>Number of sales reps</label>
+            <input type="text" name="roi_reps" placeholder="10" id="roi_reps" required/>
+          </div>
+
+     
+          <div class="form-group">
+            <input type="email" name="roi_email" placeholder="Your email address" id="roi_email" required/>
+          </div>
+
+
+          <div class="form-group">
+            <button type="submit" class="button button--primary tt-upper" id="roi-calculate">Calculate</button>
+          </div>
+          <div class="paragraph paragraph--small">
+            <p>Chili Piper <a href="https://www.chilipiper.com/privacy-policy" rel="noopener" target="_blank">Privacy Policy</a></p>
+            <a href="#" class="form-save-link d-none" rel="noopener">Share Results</a>
+            <span class="form-save-copied d-none"> - Link copied!</span>
+          </div>
+        </form>
+      </div> <!-- form -->
+    </div>
+  </div>
+</div>
+<div class="container container--center container--large wrapper-small">
+  <div class="grid grid--center grid--waffle grid--price price">
+    <div class="grid__column grid__column--12 grid__column--6@small">
+      <div class="section--rio__form">
+        <form>
+          <div class="paragraph paragraph--small">
+            <h3 class="text-center">Enter your inbound marketing metrics</h3>
+          </div>
+          <div class="form-group">
+            <label>Monthly inbound leads</label>
+            <input type="text" name="roi_leads" placeholder="10000" id="roi_leads" required/>
+          </div>
+
+          <div class="form-group">
+            <label>Monthly booked demos</label>
+            <input type="text" name="roi_demos" placeholder="5000" id="roi_demos" equired/>
+          </div>
+
+          <div class="form-group">
+            <label class="tooltip-label">Average win rate <span class="tooltip-sign">?</span><span class="tooltip">This is the percent of your booked meetings that are closed-won. If you’re not sure, use 5%.</span></label>
+            <input type="text" name="roi_rate" placeholder="5" id="roi_rate" required/>
+            <span class="append-field">%</span>
+          </div>
+
+          <div class="form-group">
+            <label>Average sales price</label>
+            <input type="text" name="roi_price" placeholder="5000" id="roi_price"  required/>
+            <span class="append-field">$</span>
+          </div>
+
+          <div class="form-group">
+            <label>Number of sales reps</label>
+            <input type="text" name="roi_reps" placeholder="10" id="roi_reps" required/>
+          </div>
+
+   
+          <div class="form-group">
+            <input type="email" name="roi_email" placeholder="Your email address" id="roi_email" required/>
+          </div>
+
+
+          <div class="form-group">
+            <button type="submit" class="button button--primary tt-upper" id="roi-calculate">Calculate</button>
+          </div>
+          <div class="paragraph paragraph--small">
+            <p>Chili Piper <a href="https://www.chilipiper.com/privacy-policy" rel="noopener" target="_blank">Privacy Policy</a></p>
+            <a href="#" class="form-save-link d-none" rel="noopener">Share Results</a>
+            <span class="form-save-copied d-none"> - Link copied!</span>
+          </div>
+        </form>
+      </div> <!-- form -->
+    </div>
+  </div>
+</div>
 `;
 
 
