@@ -6,7 +6,7 @@ let html = `
 
         <div class="grid__column grid__column--12 grid__column--6@small grid__column--5@large">
           <!-- FIRST CALC -->
-          <div class="price__calc price__calc-2b">
+          <div class="price__calc price__calc-2b active">
             <h4>Concierge</h4>
 
             <div class="content">
@@ -35,7 +35,8 @@ let html = `
             </div>
           </div>
           <!-- SECOND CALC -->
-          <div class="price__calc price__calc-2b ">
+          <div class="
+          ">
             <h4>Distro</h4>
 
             <div class="content">
@@ -55,7 +56,7 @@ let html = `
             </div>
           </div>
           <!-- THIRD CALC -->
-          <div class="price__calc price__calc-2b ">
+          <div class="price__calc price__calc-2b">
             <h4>Concierge + Distro Bundle</h4>
             <div class="content">
               <div class="switch switch--horizontal switch--horizontal__checkbox">
@@ -109,7 +110,7 @@ let html = `
             </div>
           </div>
           <!-- FIFTH CALC -->
-          <div class="price__calc price__calc-event price__calc-2b">
+          <div class="price__calc price__calc-event price__calc-2b active">
             <h4>Events</h4>
 
             <div class="content">
@@ -363,15 +364,7 @@ $(".get-calc-from-js").html(html);
     if ($('input[name="plan"]:checked').val() == 'monthly') {
       $('#checkked-5').removeAttr('checked')
       $('.price__box--events').css('display', 'none')
-      $('.price__calc-event').addClass('off-cat').removeClass('
-                                                              
-                                                              
-                                                              
-                                                              
-                                                              
-                                                              
-                                                              
-                                                              ')
+      $('.price__calc-event').addClass('off-cat').removeClass('active')
       seats7.attr('readonly', 'readonly')
     } else {
       $('.price__calc-event').removeClass('off-cat')
@@ -653,5 +646,4 @@ $(".get-calc-from-js").html(html);
       price.html(String(finalRes).replace(/(.)(?=(\d{3})+$)/g,'$1,'))
     }
   }
-
 
