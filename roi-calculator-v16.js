@@ -477,28 +477,28 @@ jQuery(document).ready(function($) {
 
             flag = true;
             $('.alert').remove();
-            $(".month-revenue").text("$" + data[0]);
-            $(".year-revenue").text("$" + data[1]);
-            $(".revenue-diff").text(data[2] + "x");
-            $(".rate-from").text(data[3] + "%");
-            $(".rate-to").val(data[4] + "%");
+            $(".month-revenue").text("$" + data["investmetReturn"]);
+            $(".year-revenue").text("$" + data["investmetReturn"]*12);
+            $(".revenue-diff").text(data["returnPoints"] + "x");
+            $(".rate-from").text(data["percentageFrom"] + "%");
+            $(".rate-to").val(data["percentageTo"] + "%");
             if (percentageToParam == 0) {
                 $(".rate-to").attr('data-min', parseInt(data[3]) + 1);
             }
             $(".roi_leads_to").text(data[5]);
             $(".roi_closed_deals").text(data[6]);
-            $(".roi_additional").text("$" + data[7]);
-            $(".roi_additional_year").text("$" + data[8]);
-            $(".roi_cost").text("$" + data[11]);
-            $(".roi_cost_add_month").text("$" + data[0]);
-            $(".roi_cost_add_year").text("$" + data[1]);
+            $(".roi_additional").text("$" + data["additionalEarn"]);
+            $(".roi_additional_year").text("$" + data["additionalEarn"]*12);
+            $(".roi_cost").text("$" + data["cost"]);
+            $(".roi_cost_add_month").text("$" + data["investmetReturn"]);
+            $(".roi_cost_add_year").text("$" + data["investmetReturn"]*12 );
             $(".js-show-result").css({
                 opacity: 1,
                 visibility: 'visible',
                 height: 100 + '%'
             })
-            $("#chart_div").attr("data-one", data[3])
-            $("#chart_div").attr("data-two", data[4])
+            $("#chart_div").attr("data-one", data["percentageFrom"])
+            $("#chart_div").attr("data-two", data["percentageTo"])
             $("#chart_div_finance").attr("data-one", bookedDemos * winRate / 100 * salesPrice)
             $("#chart_div_finance").attr("data-two", bookedDemos * winRate / 100 * salesPrice + additionalEarn)
             successData = data
