@@ -409,7 +409,7 @@ jQuery(document).ready(function ($) {
     
   }
   
-    functions success_ajax() {
+    function success_ajax() {
     
         let data = set_data_roi();
         $(data).each(function (key, value) {
