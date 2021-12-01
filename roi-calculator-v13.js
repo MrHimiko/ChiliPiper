@@ -434,9 +434,9 @@ jQuery(document).ready(function($) {
         }
 
 
+        Object.keys(data).forEach(function(key) {
 
-        $(data).each(function(key, value) {
-            console.log(key,value)
+            let value =  obj[key];
             if (value == null || value == NaN || value == 0 || value == "") {
                 if ($('.alert').length == 0) {
                     if (value == 0 || value < 0) {
