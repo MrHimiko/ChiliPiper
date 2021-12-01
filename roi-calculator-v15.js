@@ -434,61 +434,76 @@ jQuery(document).ready(function($) {
         }
 
 
-        Object.keys(data).forEach(function(key) {
+        let some_value_bad = false;
+        let bookdemos_bigger = false;
+        let returned_value = false;
 
-            let value =  data[key];
+        Object.keys(data).forEach(function(key) {
+            let value = data[key];
+            console.log( key, value);
             if (value == null || value == NaN || value == 0 || value == "") {
-                if ($('.alert').length == 0) {
-                    if (value == 0 || value < 0) {
-                        $('.section--rio__form').prepend('<span class="alert text-center">Your numbers are either too low or are yielding a negative result. Please adjust your numbers and try again.</span>')
-                    } else {
-                        $('.section--rio__form').prepend('<span class="alert text-center">All fields are required</span>')
-                    }
-                    flag = false;
-                    $(".js-show-result").css({
-                        opacity: 0,
-                        visibility: 'hidden',
-                        height: 0
-                    })
-                }
-                return false
+                some_value_bad = true;
+                returned_value = value;
+
             } else if (parseInt(bookedDemos) >= parseInt(inBoundLeads)) {
-                if ($('.alert').length == 0) {
-                    $('.section--rio__form').prepend('<span class="alert text-center">Booked demos must be lower than inbound leads</span>')
-                    flag = false;
-                    return false
-                }
-            } else if (value != "") {
-              
-                flag = true;
-                $('.alert').remove();
-                $(".month-revenue").text("$" + data[0]);
-                $(".year-revenue").text("$" + data[1]);
-                $(".revenue-diff").text(data[2] + "x");
-                $(".rate-from").text(data[3] + "%");
-                $(".rate-to").val(data[4] + "%");
-                if (percentageToParam == 0) {
-                    $(".rate-to").attr('data-min', parseInt(data[3]) + 1);
-                }
-                $(".roi_leads_to").text(data[5]);
-                $(".roi_closed_deals").text(data[6]);
-                $(".roi_additional").text("$" + data[7]);
-                $(".roi_additional_year").text("$" + data[8]);
-                $(".roi_cost").text("$" + data[11]);
-                $(".roi_cost_add_month").text("$" + data[0]);
-                $(".roi_cost_add_year").text("$" + data[1]);
-                $(".js-show-result").css({
-                    opacity: 1,
-                    visibility: 'visible',
-                    height: 100 + '%'
-                })
-                $("#chart_div").attr("data-one", data[3])
-                $("#chart_div").attr("data-two", data[4])
-                $("#chart_div_finance").attr("data-one", bookedDemos * winRate / 100 * salesPrice)
-                $("#chart_div_finance").attr("data-two", bookedDemos * winRate / 100 * salesPrice + additionalEarn)
-                successData = data
+                bookdemos_bigger = true;
             }
         })
+
+        
+      
+        if ( some_value_bad ) {
+            if ($('.alert').length == 0) {
+                if (returned_value == 0 || returned_value < 0) {
+                    $('.section--rio__form').prepend('<span class="alert text-center">Your numbers are either too low or are yielding a negative result. Please adjust your numbers and try again.</span>')
+                } else {
+                    $('.section--rio__form').prepend('<span class="alert text-center">All fields are required</span>')
+                }
+                flag = false;
+                $(".js-show-result").css({
+                    opacity: 0,
+                    visibility: 'hidden',
+                    height: 0
+                })
+            }
+            return false
+        } else if ( bookdemos_bigger ) {
+            if ($('.alert').length == 0) {
+                $('.section--rio__form').prepend('<span class="alert text-center">Booked demos must be lower than inbound leads</span>')
+                flag = false;
+                return false
+            }
+        } else {
+
+            flag = true;
+            $('.alert').remove();
+            $(".month-revenue").text("$" + data[0]);
+            $(".year-revenue").text("$" + data[1]);
+            $(".revenue-diff").text(data[2] + "x");
+            $(".rate-from").text(data[3] + "%");
+            $(".rate-to").val(data[4] + "%");
+            if (percentageToParam == 0) {
+                $(".rate-to").attr('data-min', parseInt(data[3]) + 1);
+            }
+            $(".roi_leads_to").text(data[5]);
+            $(".roi_closed_deals").text(data[6]);
+            $(".roi_additional").text("$" + data[7]);
+            $(".roi_additional_year").text("$" + data[8]);
+            $(".roi_cost").text("$" + data[11]);
+            $(".roi_cost_add_month").text("$" + data[0]);
+            $(".roi_cost_add_year").text("$" + data[1]);
+            $(".js-show-result").css({
+                opacity: 1,
+                visibility: 'visible',
+                height: 100 + '%'
+            })
+            $("#chart_div").attr("data-one", data[3])
+            $("#chart_div").attr("data-two", data[4])
+            $("#chart_div_finance").attr("data-one", bookedDemos * winRate / 100 * salesPrice)
+            $("#chart_div_finance").attr("data-two", bookedDemos * winRate / 100 * salesPrice + additionalEarn)
+            successData = data
+        }
+
 
         window.history.pushState({}, 'ROI Calculated', `${URL}`);
         window.history.replaceState({}, 'ROI Calculated', `${URL}/#calculate`);
