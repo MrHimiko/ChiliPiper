@@ -369,6 +369,7 @@ jQuery(document).ready(function ($) {
 
 
   function set_data_roi() {
+      let percentageToParam = 0;
       let flag = true;
       let successData = '';
 
