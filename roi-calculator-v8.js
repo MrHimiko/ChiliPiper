@@ -49,12 +49,13 @@ let html = `
             <span class="form-save-copied d-none"> - Link copied!</span>
           </div>
         </form>
-      </div> <!-- form -->
+      </div> 
     </div>
   </div>
 </div>
 
 <section class="hidden js-show-result">
+
 <?php
 
     <div class="container container--center container--large wrapper-small js-calculator-roi" id="show-result">
@@ -366,29 +367,26 @@ jQuery(document).ready(function ($) {
     }, 1000)
   }
 
-  const ajaxStart = (percentageToParam = 0) => {
-    let flag = true;
-    let successData = '';
 
-    // Form Elements
-    const inBoundLeads = parseInt($("#roi_leads").val().replace(/\,/g,''))
-    const bookedDemos = $("#roi_demos").val().replace(/\,/g,'')
-    const winRate = $("#roi_rate").val()
-    const salesPrice = $("#roi_price").val().replace(/\,/g,'')
-    const salesReps = $("#roi_reps").val().replace(/\,/g,'')
-    const emailAddress = $("#roi_email").val()
+  function set_data_roi() {
+      let flag = true;
+      let successData = '';
 
-    const leadsTo = percentageToParam ? inBoundLeads * percentageToParam/100 - bookedDemos : inBoundLeads * percentageCalc(bookedDemos, inBoundLeads)/100 - bookedDemos
-    const closedDeals = Math.round(leadsTo * winRate/100)
-    const additionalEarn = closedDeals * salesPrice
-    const investmetReturn = additionalEarn - costCalc(inBoundLeads, salesReps)
-    
-    
+      // Form Elements
+      const inBoundLeads = parseInt($("#roi_leads").val().replace(/\,/g,''))
+      const bookedDemos = $("#roi_demos").val().replace(/\,/g,'')
+      const winRate = $("#roi_rate").val()
+      const salesPrice = $("#roi_price").val().replace(/\,/g,'')
+      const salesReps = $("#roi_reps").val().replace(/\,/g,'')
+      const emailAddress = $("#roi_email").val()
 
-    $.ajax({
-      type: "POST",
-      url: "",
-      data: {
+      const leadsTo = percentageToParam ? inBoundLeads * percentageToParam/100 - bookedDemos : inBoundLeads * percentageCalc(bookedDemos, inBoundLeads)/100 - bookedDemos
+      const closedDeals = Math.round(leadsTo * winRate/100)
+      const additionalEarn = closedDeals * salesPrice
+      const investmetReturn = additionalEarn - costCalc(inBoundLeads, salesReps)
+
+
+      data = {
         action: "roiCalculator", 
         leads: inBoundLeads ? inBoundLeads : 0,
         demos: bookedDemos ? bookedDemos : 0,
@@ -405,73 +403,68 @@ jQuery(document).ready(function ($) {
         investmetReturn: investmetReturn,
         returnPoints: Math.round(investmetReturn / costCalc(inBoundLeads, salesReps)),
         inBoundMonthly: bookedDemos * winRate/100 * salesPrice
-      },
-
-      beforeSend: function() {
-        $('#roi-calculate').text('Calculating ...')
-        
-      },
-
-      success: function (data) {
-          $(data).each(function (key, value) {
-            if (value == null || value == NaN || value == 0 || value == "") {
-              if ($('.alert').length == 0) {
-                if (value == 0 || value < 0) {
-                  $('.section--rio__form').prepend('<span class="alert text-center">Your numbers are either too low or are yielding a negative result. Please adjust your numbers and try again.</span>')
-                } else {
-                  $('.section--rio__form').prepend('<span class="alert text-center">All fields are required</span>')
-                }
-                flag = false;
-                $(".js-show-result").css({
-                  opacity: 0,
-                  visibility: 'hidden',
-                  height: 0
-                })
+      }
+    
+      return data;
+    
+  }
+  
+    functions success_ajax() {
+    
+        let data = set_data_roi();
+        $(data).each(function (key, value) {
+          if (value == null || value == NaN || value == 0 || value == "") {
+            if ($('.alert').length == 0) {
+              if (value == 0 || value < 0) {
+                $('.section--rio__form').prepend('<span class="alert text-center">Your numbers are either too low or are yielding a negative result. Please adjust your numbers and try again.</span>')
+              } else {
+                $('.section--rio__form').prepend('<span class="alert text-center">All fields are required</span>')
               }
-              return false
-            } else if (parseInt(bookedDemos) >= parseInt(inBoundLeads)) {
-              if ($('.alert').length == 0) {
-                $('.section--rio__form').prepend('<span class="alert text-center">Booked demos must be lower than inbound leads</span>')
-                flag = false;
-                return false
-              }
-            } else if (value != "") {
-              flag = true;
-              $('.alert').remove();
-              $(".month-revenue").text("$" + data[0]);
-              $(".year-revenue").text("$" + data[1]);
-              $(".revenue-diff").text(data[2] + "x");
-              $(".rate-from").text(data[3] + "%");
-              $(".rate-to").val(data[4] + "%");
-              if (percentageToParam == 0) {
-                $(".rate-to").attr('data-min', parseInt(data[3]) + 1);
-              } 
-              $(".roi_leads_to").text(data[5]);
-              $(".roi_closed_deals").text(data[6]);
-              $(".roi_additional").text("$" + data[7]);
-              $(".roi_additional_year").text("$" + data[8]);
-              $(".roi_cost").text("$" + data[11]);
-              $(".roi_cost_add_month").text("$" + data[0]);
-              $(".roi_cost_add_year").text("$" + data[1]);
+              flag = false;
               $(".js-show-result").css({
-                opacity: 1,
-                visibility: 'visible',
-                height: 100 + '%'
+                opacity: 0,
+                visibility: 'hidden',
+                height: 0
               })
-              $("#chart_div").attr("data-one", data[3])
-              $("#chart_div").attr("data-two", data[4])
-              $("#chart_div_finance").attr("data-one", bookedDemos * winRate/100 * salesPrice)
-              $("#chart_div_finance").attr("data-two", bookedDemos * winRate/100 * salesPrice + additionalEarn)
-              successData = data
             }
-          })
-      },
-
-      error: function (XMLHttpRequest, textStatus, errorThrown) {
-        console.log(`${textStatus} check your code`)
-      },
-
-      complete: function() {
+            return false
+          } else if (parseInt(bookedDemos) >= parseInt(inBoundLeads)) {
+            if ($('.alert').length == 0) {
+              $('.section--rio__form').prepend('<span class="alert text-center">Booked demos must be lower than inbound leads</span>')
+              flag = false;
+              return false
+            }
+          } else if (value != "") {
+            flag = true;
+            $('.alert').remove();
+            $(".month-revenue").text("$" + data[0]);
+            $(".year-revenue").text("$" + data[1]);
+            $(".revenue-diff").text(data[2] + "x");
+            $(".rate-from").text(data[3] + "%");
+            $(".rate-to").val(data[4] + "%");
+            if (percentageToParam == 0) {
+              $(".rate-to").attr('data-min', parseInt(data[3]) + 1);
+            } 
+            $(".roi_leads_to").text(data[5]);
+            $(".roi_closed_deals").text(data[6]);
+            $(".roi_additional").text("$" + data[7]);
+            $(".roi_additional_year").text("$" + data[8]);
+            $(".roi_cost").text("$" + data[11]);
+            $(".roi_cost_add_month").text("$" + data[0]);
+            $(".roi_cost_add_year").text("$" + data[1]);
+            $(".js-show-result").css({
+              opacity: 1,
+              visibility: 'visible',
+              height: 100 + '%'
+            })
+            $("#chart_div").attr("data-one", data[3])
+            $("#chart_div").attr("data-two", data[4])
+            $("#chart_div_finance").attr("data-one", bookedDemos * winRate/100 * salesPrice)
+            $("#chart_div_finance").attr("data-two", bookedDemos * winRate/100 * salesPrice + additionalEarn)
+            successData = data
+          }
+        })
+      
         window.history.pushState({}, 'ROI Calculated', `${URL}`);
         window.history.replaceState({}, 'ROI Calculated', `${URL}/#calculate`);
         $('#roi-calculate').text('Calculate')
@@ -480,9 +473,10 @@ jQuery(document).ready(function ($) {
           drawTrendlines(bookedDemos * winRate/100 * salesPrice, bookedDemos * winRate/100 * salesPrice + additionalEarn, 'chart_div_finance');
           smoothScroll('#show-result');
         }
-      },
-    })
-  }
+      
+    }
+  
+
 
   $(window).resize(function () {
     const dataChartOne = $("#chart_div").attr("data-one")
@@ -509,49 +503,14 @@ jQuery(document).ready(function ($) {
 
   submitBtn.on("click", function (e) {
     e.preventDefault();
+    success_ajax();
     $('.form-save-link').removeClass('d-none');
-    ajaxHSData();
-    ajaxStart();
+    // ajaxHSData();
+    // ajaxStart();
   })
 })
 
-// send ajax request to HS
-function ajaxHSData () {
-  var data = {
-    'fields': [
-      {
-        'name': 'email',
-        'value': jQuery('#roi_email').val()
-      },
-      {
-        'name': 'monthly_inbound_leads___roi_calc',
-        'value': jQuery('#roi_leads').val()
-      },
-      {
-        'name': 'monthly_booked_demos___roi_calc',
-        'value': jQuery('#roi_demos').val()
-      },
-      {
-        'name': 'avg_win_rate___roi_calc',
-        'value': jQuery('#roi_rate').val()
-      },
-      {
-        'name': 'avg_sales_price___roi_calc',
-        'value': jQuery('#roi_price').val()
-      },
-      {
-        'name': 'number_of_sales_reps___roi_calc',
-        'value': jQuery('#roi_reps').val()
-      }
-    ],
-    'context': {
-      'pageUri': ajax_url.urlsite,
-      'pageName': ajax_url.sitetitle
-    }
-  }
 
-  sendAjaxHS('34726c21-ded6-41f5-b590-93969f54609f', data)
-}
 
 function sendAjaxHS (formID, data, step) {
   
