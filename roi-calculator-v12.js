@@ -435,9 +435,8 @@ jQuery(document).ready(function($) {
 
 
 
-
-
         $(data).each(function(key, value) {
+            console.log(key,value)
             if (value == null || value == NaN || value == 0 || value == "") {
                 if ($('.alert').length == 0) {
                     if (value == 0 || value < 0) {
@@ -460,6 +459,7 @@ jQuery(document).ready(function($) {
                     return false
                 }
             } else if (value != "") {
+              
                 flag = true;
                 $('.alert').remove();
                 $(".month-revenue").text("$" + data[0]);
