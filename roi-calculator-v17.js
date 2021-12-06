@@ -501,6 +501,9 @@ jQuery(document).ready(function($) {
             $("#chart_div").attr("data-two", data["percentageTo"])
             $("#chart_div_finance").attr("data-one", bookedDemos * winRate / 100 * salesPrice)
             $("#chart_div_finance").attr("data-two", bookedDemos * winRate / 100 * salesPrice + additionalEarn)
+          
+          
+            $(".roi-success-hidden").show();
             successData = data
         }
 
