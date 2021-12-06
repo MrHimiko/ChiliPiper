@@ -54,7 +54,6 @@ let html = `
 
 <section class="hidden js-show-result">
 
-<?php
 
     <div class="container container--center container--large wrapper-small js-calculator-roi" id="show-result">
       <div class="grid grid--center grid--waffle grid--price price">
