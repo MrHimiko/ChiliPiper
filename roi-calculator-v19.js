@@ -34,13 +34,11 @@ let html = `
             <input type="text" name="roi_reps" placeholder="10" id="roi_reps" required="">
           </div>
 
-                    <div class="form-group">
-            <input type="email" name="roi_email" placeholder="Your email address" id="roi_email" required="">
-          </div>
-          
+
           <div class="form-group">
             <button type="submit" class="button button--primary tt-upper" id="roi-calculate">Calculate</button>
           </div>
+          
           <div class="paragraph paragraph--small">
             <p>Chili Piper <a href="/privacy-policy" rel="noopener" target="_blank">Privacy Policy</a></p>
             <a href="#" class="form-save-link d-none" rel="noopener">Share Results</a>
