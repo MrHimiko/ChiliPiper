@@ -108,60 +108,6 @@ let html = `
       </div>
     </div>
 
- 
-<div class="container container--center container--large wrapper-small js-calculator-roi" id="show-result">
-  <div class="grid grid--center grid--waffle grid--price price">
-    <div class="grid__column id__column--12 grid__column--10@large">
-      <div class="roi-results">
-        <p class="heading h2 text-center">Your ROI with Chili Piper</p>
-        <div class="paragraph text-center">
-          <p>Your estimated return on investment with Chili Piper is <span class="month-revenue"></span> per <br>month and <span class="year-revenue"></span> per year. That’s a return of <span class="revenue-diff"></span>.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="grid__column grid__column--12 grid__column--4@large roi-results order-2 small-extra-padding extra-minus-margin">
-      <h3 class="d-lg-block d-none">Lead to Meeting - Conversion Rate</h3>
-      <p>Allowing customers to book a meeting at the moment they’re interested is proven to increase the number of booked meetings. </p>
-      <p>Based on our customer average, we estimate we can improve your lead to meeting rate <br>from <span class="rate-from no-bg"></span> to 
-      <span class="rate-to-wrapper"><input type="text" class="rate-to" data-min=""></span>
-    </p>
-    </div>
-    <div class="grid__column grid__column--12 grid__column--6@large order-1 roi-results">
-      <h3 class="d-lg-none d-block">Lead to Meeting - Conversion Rate</h3>
-      <div id="chart_div"></div>
-    </div>
-  </div>
-</div>
-
-<div class="linear-gray-bg">
-    <div class="container container--center container--large wrapper-small js-calculator-roi">
-      <div class="grid grid--center grid--waffle grid--price price">
-        <div class="grid__column grid__column--12 grid__column--10@large">
-          <div class="roi-results rois-results--next">
-            <div class="paragraph paragraph--small text-center">
-              <p>Increasing your lead to meeting rate will lead to <span class="roi_leads_to"></span>, more booked meetings and <span class="roi_closed_deals"></span> more <br>closed deals per month.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid__column grid__column--12 grid__column--6@large roi-results">
-        <h3 class="d-lg-none d-block">Inbound Monthly Revenue</h3>
-        <div id="chart_div_finance"></div>
-        </div>
-        <div class="grid__column grid__column--12 grid__column--4@large roi-results extra-minus-margin">
-        <h3 class="d-lg-block d-none">Inbound Monthly Revenue</h3>
-          <p>Based on the average sales price you input, <br>you will earn an additional <span class="roi_additional"></span> per <br>month in revenue with Chili Piper. That’s <br><span class="roi_additional_year"></span> in additional revenue per year.</p>
-        </div>
-        <div class="roi-results">
-          <div class="paragraph paragraph--small text-center">
-            <p>Your estimated cost is <span class="roi_cost"></span> per month, which means your return on investment is <br><span class="roi_cost_add_month"></span> per month and <span class="roi_cost_add_year"></span> per year. </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-   
 
 </section>
 
