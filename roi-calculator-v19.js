@@ -449,7 +449,7 @@ jQuery(document).ready(function($) {
             }
         })
 
-        
+         console.log("BAD VALUE", some_value_bad );
       
         if ( some_value_bad ) {
             if ($('.alert').length == 0) {
@@ -473,6 +473,8 @@ jQuery(document).ready(function($) {
                 return false
             }
         } else {
+          
+            console.log(data);
 
             flag = true;
             $('.alert').remove();
