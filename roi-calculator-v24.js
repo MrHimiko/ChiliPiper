@@ -465,7 +465,9 @@ jQuery(document).ready(function($) {
             $("#email-5").val( $("[name='roi_email']").val() ) ;
             
   
-            
+            setTimeout(function(){
+              $("#ROI-calculator .chillisubmit ").trigger("click");
+            }, 1000)
 
           
           
