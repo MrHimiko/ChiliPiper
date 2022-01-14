@@ -454,6 +454,8 @@ jQuery(document).ready(function($) {
           
             
           
+            console.log("SEND HUBSPOT DATA");
+          
             
             $("[name='monthly_inbound_leads___roi_calc']").val(  $("[name='roi_leads']").val() );
             $("[name='monthly_booked_demos___roi_calc']").val(  $("[name='roi_demos']").val() );
