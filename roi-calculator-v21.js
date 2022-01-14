@@ -419,8 +419,7 @@ jQuery(document).ready(function($) {
                 return false
             }
         } else {
-          
-            console.log(data);
+
 
             flag = true;
             $('.alert').remove();
@@ -451,7 +450,23 @@ jQuery(document).ready(function($) {
           
           
             $(".roi-success-hidden").show();
-            successData = data
+            successData = data;
+          
+            
+          
+            
+            $("[name='monthly_inbound_leads___roi_calc']").val(  $("[name='roi_leads']").val() );
+            $("[name='monthly_booked_demos___roi_calc']").val(  $("[name='roi_demos']").val() );
+            $("[name='avg_win_rate___roi_calc']").val(  $("[name='roi_rate']").val() );
+            $("[name='avg_sales_price___roi_calc']").val(  $("[name='roi_price']").val() );
+            $("[name='number_of_sales_reps___roi_calc']").val(  $("[name='roi_reps']").val() );
+            $("#email-5").val( $("[name='roi_email']").val() ) ;
+            
+  
+            $("#ROI-calculator .chillisubmit ").trigger("click");
+
+          
+          
         }
 
 
