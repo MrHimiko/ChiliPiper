@@ -173,15 +173,16 @@ let html = `
 
                     <h1>$<span class="final-price">0</span> <span class="price__label price__label--standard">per month (billed at $0 per year)</span></h1>
 
-                    <div class="switch switch--horizontal">
+                    <div class="switch switch--horizontal" id="price-switcher">
                         <input id="radio-a" type="radio" name="plan" value="monthly" />
                         <label for="radio-a">monthly</label>
                         <input id="radio-b" type="radio" name="plan" value="annual" checked="checked" />
                         <label for="radio-b">annual</label><span class="toggle-outside"><span class="toggle-inside"></span></span>
                     </div>
 
-                    <div class="price__text-orange">
+                    <div class="price__text-orange" id="save-price">
                         <p>Save $<span class="price__save">0</span> per month with <span>annual billing</span></p>
+                        <span style=" font-size: 13px;line-height: 25px; color: #f40; font-family: "Rubik", sans-serif; margin: 0;"></span>
                     </div>
 
 
@@ -202,7 +203,7 @@ let html = `
                                 <h3>Users</h3>
                             </div>
                             <div class="float-right">
-                                <p><span class="price__value price__value--standard fw-bold" id="concierge_tab_users">x</span>$<span class="unit-price1">50</span> per user</p>
+                                <p><span class="price__value price__value--standard fw-bold" id="concierge_tab_users">x</span>$<span class="unit-price1" id="concierge_per_user"></span> per user</p>
                             </div>
                         </div>
                         <!-- .column-->
@@ -217,7 +218,7 @@ let html = `
                                 <h3>Users</h3>
                             </div>
                             <div class="float-right">
-                                <p><span class="price__value price__value--standard1 fw-bold" id="distro_tab_users">x</span>$<span class="unit-price2">30</span> per user</p>
+                                <p><span class="price__value price__value--standard1 fw-bold" id="distro_tab_users">x</span>$<span class="unit-price2" id="distro_per_user"></span> per user</p>
                             </div>
                         </div>
                         <!-- .column-->
@@ -241,7 +242,7 @@ let html = `
                                 <h3>Users</h3>
                             </div>
                             <div class="float-right">
-                                <p><span class="price__value price__value--standard2 fw-bold" id="concierge_distro_tab_users">x</span>$<span class="unit-price4">70</span> per user</p>
+                                <p><span class="price__value price__value--standard2 fw-bold" id="concierge_distro_tab_users">x</span>$<span class="unit-price4"id="concierge_distro_per_user"></span> per user</p>
                             </div>
                         </div>
                         <!-- .column-->
@@ -258,7 +259,7 @@ let html = `
                                 <h3>Users</h3>
                             </div>
                             <div class="float-right">
-                                <p><span class="price__value price__value--standard3 fw-bold" id="handoff_tab_users">x</span>$<span class="unit-price6">25</span> per user</p>
+                                <p><span class="price__value price__value--standard3 fw-bold" id="handoff_tab_users">x</span>$<span class="unit-price6" id="handoff_per_user"></span> per user</p>
                             </div>
                         </div>
                        
@@ -271,7 +272,7 @@ let html = `
                                 <h3>Price</h3>
                             </div>
                             <div class="float-right">
-                                <p><span class="price__value price__value--standard3 fw-bold" id="instant_booker_tab_users">x</span>$<span class="unit-price6">15</span> per user</p>
+                                <p><span class="price__value price__value--standard3 fw-bold" id="instant_booker_tab_users">x</span>$<span class="unit-price6" id="instant_booker_per_user">15</span> per user</p>
                             </div>
                         </div>
                        
@@ -293,7 +294,7 @@ let html = `
                                 <h3>Users</h3>
                             </div>
                             <div class="float-right">
-                                <p><span class="price__value price__value--standard5 fw-bold" id="events_tab_users">x</span>$<span class="unit-price8">20</span> per user</p>
+                                <p><span class="price__value price__value--standard5 fw-bold" id="events_tab_users">x</span>$<span class="unit-price8" id="events_per_user">20</span> per user</p>
                             </div>
                         </div>
                         <!-- .column-->
@@ -319,39 +320,28 @@ $(".get-calc-from-js").html(html);
 
 
 
-// toggled dropdowns
-
-$(document).on('click', '.price__calc-2b h4', function() {
-    $(this).parent().toggleClass('active');
-});
-
-
-
-
-
-$('#meetings .switch input').on('change', function() {
-	let x = $(this).attr("price-data");
-    if ($(this).is(':checked')) {
-        $(this).closest(".content").find("input").removeAttr('readonly');
-        $(x).show();
-    } else {
-        $(this).closest(".content").find("input").attr('readonly', 'readonly');
-        $(x).hide();
-    }
-
-})
-
-
 
 
 
 // FORMULAS
-function concierge_platform_fee(volume) {
+function concierge_platform_fee(volume, is_annual) {
 	let money = 0;
+
+	let p1 = 225;
+	let p2 = 600;
+	let p3 = 1500;
+
+	if ( is_annual ) {
+		p1 = 150;
+		p2 = 400;
+		p3 = 1000;
+	}
+
+
 	if ( volume == 0) { money = 0;}
-	else if ( volume < 250 && volume > 0 ) { money = 250;}
-	else if ( volume < 1001 && volume > 250) { money = 500;}
-	else if ( volume > 1001) { money = 1200;}
+	else if ( volume < 101 && volume > 0 ) { money = p1;}
+	else if ( volume < 1001 && volume > 100) { money = p2;}
+	else if ( volume > 100) { money = p3;}
 	return money;
 }
 
@@ -376,59 +366,129 @@ function events_platform_fee(users) {
 
 function calculate_prices() {
 
-	// calculate all , no matter if they are disabled
 
-	let concierge_tab_platform_fee = concierge_platform_fee( $("#concierge_volume").val() );
-	let concierge_tab_users = user_x_price( $("#concierge_users").val(), 50);
+	let total_price = 0;
 
+	let is_annual = true;
 
-	let distro_tab_users = user_x_price( $("#distro_users").val(), 30);
-
-
-	let concierge_distro_tab_platform_fee = concierge_platform_fee( $("#distro_concierge_volume").val() );
-	let concierge_distro_tab_users = user_x_price( $("#distro_concierge_users").val(), 70);
+	if ( $('input[name="plan"]:checked').val() == 'monthly') {
+		is_annual = false;
+	}
 
 
-	let handoff_tab_users = user_x_price( $("#handoff_users").val(), 25);
 
-	let instant_booker_tab_users = user_x_price( $("#instant_booker_users").val(), 15);
+	//hide events tabs if annual is not selected
 
-	let events_tab_platform_fee = events_platform_fee( $("#events_users").val() );
-	let events_tab_users = user_x_price( $("#events_users").val(), 20);
+	console.log("is_annual", is_annual);
+
+	if ( !is_annual ) {
+		$(".price__calc-event").hide();
+		$(".price__box--events").hide();
+	} else {
+		$(".price__calc-event").show();
+
+		if ( $("#events_users").attr("readonly") == undefined ) {
+			$(".price__box--events").show();
+		}
+
+	}
+
+
+
+	// define annual and monthly prices by user!
+
+	let concierge_per_user_ann = 30;
+	let distro_per_user_ann = 20;
+	let concierge_distro_per_user_ann = 40;
+	let handoff_per_user_ann = 25;
+	let instant_booker_per_user_ann = 15;
+	let events_per_user_ann = 20;
+
+	let	concierge_per_user_mon = 45;
+	let	distro_per_user_mon = 30;
+	let	concierge_distro_per_user_mon = 60;
+	let	handoff_per_user_mon = 37.5;
+	let	instant_booker_per_user_mon = 22.5;
+	
+
+
+	// calculate annual and monthly total prices
+	let monthly_price = 0;
+	let annual_price = 0;
+
+	
+	let concierge_tab_platform_fee_ann = concierge_platform_fee( $("#concierge_volume").val(), true );
+	let concierge_tab_users_ann = user_x_price( $("#concierge_users").val() , concierge_per_user_ann );
+
+	let distro_tab_users_ann = user_x_price( $("#distro_users").val(), distro_per_user_ann );
+
+	let concierge_distro_tab_platform_fee_ann = concierge_platform_fee( $("#distro_concierge_volume").val(), true);
+	let concierge_distro_tab_users_ann = user_x_price( $("#distro_concierge_users").val(),  concierge_distro_per_user_ann  );
+	let handoff_tab_users_ann = user_x_price( $("#handoff_users").val(), handoff_per_user_ann );
+
+	let instant_booker_tab_users_ann = user_x_price( $("#instant_booker_users").val(), instant_booker_per_user_ann );
+
+	let events_tab_platform_fee_ann = events_platform_fee( $("#events_users").val() );
+	let events_tab_users_ann = user_x_price( $("#events_users").val(), events_per_user_ann);
+
+
+
+	// calculate monthly
+	let concierge_tab_platform_fee_mon = concierge_platform_fee( $("#concierge_volume").val(), false );
+	let concierge_tab_users_mon = user_x_price( $("#concierge_users").val() , concierge_per_user_mon );
+
+	let distro_tab_users_mon = user_x_price( $("#distro_users").val(), distro_per_user_mon );
+
+	let concierge_distro_tab_platform_fee_mon = concierge_platform_fee( $("#distro_concierge_volume").val(), false);
+	let concierge_distro_tab_users_mon = user_x_price( $("#distro_concierge_users").val(),  concierge_distro_per_user_mon  );
+
+	let handoff_tab_users_mon = user_x_price( $("#handoff_users").val(), handoff_per_user_mon );
+
+	let instant_booker_tab_users_mon = user_x_price( $("#instant_booker_users").val(), instant_booker_per_user_mon );
+
+
 
 
 
 	// create a total price out of the prices that are not disabled
-	let total_price = 0;
+
 
 	if ( $("#concierge_volume").attr("readonly") == undefined ) {
-		total_price += concierge_tab_platform_fee + concierge_tab_users;
+		annual_price += concierge_tab_platform_fee_ann + concierge_tab_users_ann;
+		monthly_price += concierge_tab_platform_fee_mon + concierge_tab_users_mon;
 	}
 
 	if ( $("#distro_users").attr("readonly") == undefined ) {
-		total_price += distro_tab_users;
+		annual_price += distro_tab_users_ann;
+		monthly_price += distro_tab_users_mon;
 	}
 
 	if ( $("#distro_concierge_volume").attr("readonly") == undefined ) {
-		total_price += concierge_distro_tab_platform_fee + concierge_distro_tab_users;
+		annual_price += concierge_distro_tab_platform_fee_ann + concierge_distro_tab_users_ann;
+		monthly_price += concierge_distro_tab_platform_fee_mon + concierge_distro_tab_users_mon;
 	}
 
 	if ( $("#handoff_users").attr("readonly") == undefined ) {
-		total_price += handoff_tab_users;
+		annual_price += handoff_tab_users_ann;
+		monthly_price += handoff_tab_users_mon;
 	}
 
 	if ( $("#instant_booker_users").attr("readonly") == undefined ) {
-		total_price += instant_booker_tab_users;
+		annual_price += instant_booker_tab_users_ann;
+		monthly_price += instant_booker_tab_users_mon;
+	}
+
+	let events_are_added = false;
+	if ( $("#events_users").attr("readonly") == undefined && is_annual ) {
+		annual_price += events_tab_platform_fee_ann + events_tab_users_ann;
+		events_are_added = true;
 	}
 
 
-	if ( $("#events_users").attr("readonly") == undefined ) {
-		total_price += events_tab_platform_fee + events_tab_users;
-	}
 
 
 	// show final price, based on montly or annual payment
-	let finalRes = total_price;
+	let finalRes = monthly_price;
 
 	let 
 	priceSave = $('.price__save'),
@@ -437,31 +497,57 @@ function calculate_prices() {
 
     let formatedSave;
 
-    if ($('input[name="plan"]:checked').val() == 'monthly') {
+
+    if ( !is_annual ) {
 	    priceLabel.html('per month')
-	    formatedSave = Math.ceil(finalRes - (finalRes * 0.66666667))
-	    priceSave.html(String(formatedSave).replace(/(.)(?=(\d{3})+$)/g,'$1,'))
     } else {
-    	finalRes = Math.floor( finalRes * 0.66666667 );
-      	yearPrice = String(finalRes * 12).replace(/(.)(?=(\d{3})+$)/g,'$1,')
+    	finalRes = annual_price;
+      	yearPrice = String(annual_price * 12).replace(/(.)(?=(\d{3})+$)/g,'$1,')
       	priceLabel.html('per month (billed at $'+ yearPrice +' per year)')
-      	formatedSave = Math.ceil((finalRes / 0.66666667) - finalRes)
-      	priceSave.html(String(formatedSave).replace(/(.)(?=(\d{3})+$)/g,'$1,'))
     }
 
 
+	//hide save text if events are added, since they are allowed only in annual
+  	if (!events_are_added) { 
+  		formatedSave = Math.ceil( monthly_price - annual_price );
+  		priceSave.html(String(formatedSave).replace(/(.)(?=(\d{3})+$)/g,'$1,'))
+  		$("#save-price > p").show();
+  		$("#save-price > span").hide();
+  		$("#price-switcher").show();
+
+  		$("#save-price").css("margin-top", 0);
+  	} 
+    else { 
+    	$("#save-price > span").text("Our Events product only offers annual pricing");
+    	$("#save-price > p").hide();
+  		$("#save-price > span").show();
+  		$("#price-switcher").hide();
+
+  		$("#save-price").css("margin-top", "10px");
+	}
 
 
+
+	//show final rice
     if(isNaN(finalRes)) {
-      price.html('0')
+      	price.html('0')
     } else {
-      $(".final-price").html(String(finalRes).replace(/(.)(?=(\d{3})+$)/g,'$1,'))
+      	$(".final-price").html(String(finalRes).replace(/(.)(?=(\d{3})+$)/g,'$1,'))
     }
 
 
 
 
 	// Update visual data (each tab pricing under total price on the right side)
+	let concierge_tab_platform_fee = concierge_tab_platform_fee_mon;
+	let concierge_distro_tab_platform_fee = concierge_distro_tab_platform_fee_mon;
+
+	if ( is_annual ) {  concierge_tab_platform_fee = concierge_tab_platform_fee_ann; }
+	if ( is_annual ) {  concierge_distro_tab_platform_fee = concierge_distro_tab_platform_fee_ann; }
+
+
+
+
 	update_visual_data(	
 		concierge_tab_platform_fee,
 		$("#concierge_users").val(),
@@ -470,7 +556,7 @@ function calculate_prices() {
 		$("#distro_concierge_users").val(),
 		$("#handoff_users").val(),
 		$("#instant_booker_users").val(),
-		events_tab_platform_fee,
+		events_tab_platform_fee_ann,
 		$("#events_users").val()
 	);
 }
@@ -498,7 +584,7 @@ function update_visual_data(
 	if ( handoff_tab_users == "") {handoff_tab_users = 0;}
 	if ( instant_booker_tab_users == "") {instant_booker_tab_users = 0;}
 	if ( events_tab_users == "") {events_tab_users = 0;}
-	
+
 
 	$("#concierge_tab_platform_fee").text(concierge_tab_platform_fee);
 	$("#concierge_tab_users").text("x"+concierge_tab_users);
@@ -509,8 +595,56 @@ function update_visual_data(
 	$("#instant_booker_tab_users").text("x"+instant_booker_tab_users);
 	$("#events_tab_platform_fee").text(events_tab_platform_fee);
 	$("#events_tab_users").text("x"+events_tab_users);
+
+
+
+
+
+
+
+
+	// define and show prices in right table based on what is selected
+	let concierge_per_user = 30;
+	let distro_per_user = 20;
+	let concierge_distro_per_user = 40;
+	let handoff_per_user = 25;
+	let instant_booker_per_user = 15;
+	let events_per_user = 20;
+
+	if ( $('input[name="plan"]:checked').val() == 'monthly') {
+		concierge_per_user = 45;
+		distro_per_user = 30;
+		concierge_distro_per_user = 60;
+		handoff_per_user = 37.5;
+		instant_booker_per_user = 22.5;
+	}
+
+	$("#concierge_per_user").text(concierge_per_user);
+	$("#distro_per_user").text(distro_per_user);
+	$("#concierge_distro_per_user").text(concierge_distro_per_user);
+	$("#handoff_per_user").text(handoff_per_user);
+	$("#instant_booker_per_user").text(instant_booker_per_user);
+	$("#events_per_user").text(events_per_user);
+
+
+
 }
 
+
+
+
+
+
+
+
+
+
+
+// toggled dropdowns
+
+$(document).on('click', '.price__calc-2b h4', function() {
+    $(this).parent().toggleClass('active');
+});
 
 
 
@@ -518,3 +652,18 @@ function update_visual_data(
 $('#meetings input').on('change keyup', function() {
     calculate_prices();
 });
+
+
+
+$('#meetings .switch input').on('change', function() {
+
+	let x = $(this).attr("price-data");
+    if ($(this).is(':checked')) {
+        $(this).closest(".content").find("input").removeAttr('readonly');
+        $(x).show();
+    } else {
+        $(this).closest(".content").find("input").attr('readonly', 'readonly');
+        $(x).hide();
+    }
+    calculate_prices()
+})
