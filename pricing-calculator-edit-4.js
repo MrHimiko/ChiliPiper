@@ -492,6 +492,14 @@ function update_visual_data(
 	events_tab_users
 ) {
 
+	if ( concierge_tab_users == "") {concierge_tab_users = 0;}
+	if ( distro_tab_users == "") {distro_tab_users = 0;}
+	if ( concierge_distro_tab_users == "") {concierge_distro_tab_users = 0;}
+	if ( handoff_tab_users == "") {handoff_tab_users = 0;}
+	if ( instant_booker_tab_users == "") {instant_booker_tab_users = 0;}
+	if ( events_tab_users == "") {events_tab_users = 0;}
+	
+
 	$("#concierge_tab_platform_fee").text(concierge_tab_platform_fee);
 	$("#concierge_tab_users").text("x"+concierge_tab_users);
 	$("#distro_tab_users").text("x"+distro_tab_users);
@@ -502,9 +510,6 @@ function update_visual_data(
 	$("#events_tab_platform_fee").text(events_tab_platform_fee);
 	$("#events_tab_users").text("x"+events_tab_users);
 }
-
-
-
 
 
 
