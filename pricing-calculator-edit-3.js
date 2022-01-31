@@ -2,12 +2,12 @@
 
 
 let concierge = `
-<div class="price__calc price__calc-2b active">
+<div class="price__calc price__calc-2b">
     <h4>Concierge</h4>
     <div class="content">
         <div class="switch switch--horizontal switch--horizontal__checkbox">
-            <input id="checkked-1" type="checkbox" name="checked-1" value="Buy Concierge" />
-            <label for="checkked-1">Buy Concierge</label><span class="toggle-outside"><span class="toggle-inside"></span></span>
+            <input id="checked-concierge" type="checkbox" name="checked-concierge" value="Buy Concierge" price-data=".price__box--concierge"/>
+            <label for="checked-concierge">Buy Concierge</label><span class="toggle-outside"><span class="toggle-inside"></span></span>
         </div>
         <div class="grid grid--stackable">
             <div class="grid__column">
@@ -36,8 +36,8 @@ let distro = `
     <h4>Distro</h4>
     <div class="content">
         <div class="switch switch--horizontal switch--horizontal__checkbox">
-            <input id="checkked-2" type="checkbox" name="checked-2" value="Buy Distro" />
-            <label for="checkked-2">Buy Distro</label><span class="toggle-outside"><span class="toggle-inside"></span></span>
+            <input id="checked-distro" type="checkbox" name="checked-distro" value="Buy Distro" price-data=".price__box--distro" />
+            <label for="checked-distro">Buy Distro</label><span class="toggle-outside"><span class="toggle-inside"></span></span>
         </div>
         <div class="grid grid--stackable">
             <div class="grid__column">
@@ -57,8 +57,8 @@ let distro_concierge = `
     <h4>Concierge + Distro Bundle</h4>
     <div class="content">
         <div class="switch switch--horizontal switch--horizontal__checkbox">
-            <input id="checkked-3" type="checkbox" name="checked-3" value="Concierge + Distro Bundle" />
-            <label for="checkked-3">Concierge + Distro Bundle</label><span class="toggle-outside"><span class="toggle-inside"></span></span>
+            <input id="checked-distro_concierge" type="checkbox" name="checked-distro_concierge" value="Concierge + Distro Bundle" price-data=".price__box--instant"/>
+            <label for="checked-distro_concierge">Concierge + Distro Bundle</label><span class="toggle-outside"><span class="toggle-inside"></span></span>
         </div>
         <div class="grid grid--stackable">
             <div class="grid__column">
@@ -86,8 +86,8 @@ let handoff = `
     <h4> Handoff </h4>
     <div class="content">
         <div class="switch switch--horizontal switch--horizontal__checkbox">
-            <input id="checkked-4" type="checkbox" name="checked-4" value="Buy Handoff" />
-            <label for="checkked-4">Buy Instant Booker</label><span class="toggle-outside"><span class="toggle-inside"></span></span>
+            <input id="checked-handoff" type="checkbox" name="checked-handoff" value="Buy Handoff" price-data=".price__box--handoff" />
+            <label for="checked-handoff">Buy Handoff </label><span class="toggle-outside"><span class="toggle-inside"></span></span>
         </div>
         <div class="grid grid--stackable">
             <div class="grid__column">
@@ -109,9 +109,10 @@ let instant_booker = `
     <h4>Instant Booker</h4>
     <div class="content">
         <div class="switch switch--horizontal switch--horizontal__checkbox">
-            <input id="checkked-4" type="checkbox" name="checked-4" value="Buy Instant Booker" />
-            <label for="checkked-4">Buy Instant Booker</label><span class="toggle-outside"><span class="toggle-inside"></span></span>
+            <input id="checked-instant_booker" type="checkbox" name="checked-instant_booker" value="Buy Instant Booker" price-data=".price__box--booker" />
+            <label for="checked-instant_booker">Buy Instant Booker</label><span class="toggle-outside"><span class="toggle-inside"></span></span>
         </div>
+
         <div class="grid grid--stackable">
             <div class="grid__column">
                 <span class="h5 heading">Users</span>
@@ -135,8 +136,8 @@ let events_calc =
     <h4>Events</h4>
     <div class="content">
         <div class="switch switch--horizontal switch--horizontal__checkbox">
-            <input id="checkked-5" type="checkbox" name="checked-5" value="Buy Events" />
-            <label for="checkked-5">Buy Events</label><span class="toggle-outside"><span class="toggle-inside"></span></span>
+            <input id="checked-events" type="checkbox" name="checked-events" value="Buy Events" price-data=".price__box--events"/>
+            <label for="checked-events">Buy Events</label><span class="toggle-outside"><span class="toggle-inside"></span></span>
         </div>
         <div class="grid grid--stackable">
             <div class="grid__column">
@@ -168,16 +169,23 @@ let html = `
             <!-- ENDGRID -->
             <div class="grid__column grid__column--12 grid__column--6@small">
                 <div class="price__box price__box--orange">
+
+
                     <h1>$<span class="final-price">0</span> <span class="price__label price__label--standard">per month (billed at $0 per year)</span></h1>
+
                     <div class="switch switch--horizontal">
                         <input id="radio-a" type="radio" name="plan" value="monthly" />
                         <label for="radio-a">monthly</label>
                         <input id="radio-b" type="radio" name="plan" value="annual" checked="checked" />
                         <label for="radio-b">annual</label><span class="toggle-outside"><span class="toggle-inside"></span></span>
                     </div>
+
                     <div class="price__text-orange">
                         <p>Save $<span class="price__save">0</span> per month with <span>annual billing</span></p>
                     </div>
+
+
+
                     <div class="price__box--repeat price__box--concierge" style="display: none;">
                         <h4>CONCIERGE</h4>
                         <div class="price__box--column">
@@ -185,7 +193,7 @@ let html = `
                                 <h3>Platform Fee<span class="h3 price__platform-label"></span></h3>
                             </div>
                             <div class="float-right">
-                                <p>$<span class="unit-price">100</span></p>
+                                <p>$<span class="unit-price" id="concierge_tab_platform_fee">100</span></p>
                             </div>
                         </div>
                         <!-- .column-->
@@ -194,11 +202,14 @@ let html = `
                                 <h3>Users</h3>
                             </div>
                             <div class="float-right">
-                                <p><span class="price__value price__value--standard fw-bold">x</span>$<span class="unit-price1">30</span> per user</p>
+                                <p><span class="price__value price__value--standard fw-bold" id="concierge_tab_users">x</span>$<span class="unit-price1">50</span> per user</p>
                             </div>
                         </div>
                         <!-- .column-->
                     </div>
+
+
+
                     <div class="price__box--repeat price__box--distro" style="display: none;">
                         <h4>Distro</h4>
                         <div class="price__box--column">
@@ -206,11 +217,14 @@ let html = `
                                 <h3>Users</h3>
                             </div>
                             <div class="float-right">
-                                <p><span class="price__value price__value--standard1 fw-bold">x</span>$<span class="unit-price2">30</span> per user</p>
+                                <p><span class="price__value price__value--standard1 fw-bold" id="distro_tab_users">x</span>$<span class="unit-price2">30</span> per user</p>
                             </div>
                         </div>
                         <!-- .column-->
                     </div>
+
+
+
                     <div class="price__box--repeat price__box--instant" style="display: none;">
                         <h4>Concierge + Distro Bundle</h4>
                         <div class="price__box--column">
@@ -218,7 +232,7 @@ let html = `
                                 <h3>Platform Fee<span class="h3 price__platform-label"></span></h3>
                             </div>
                             <div class="float-right">
-                                <p>$<span class="unit-price3">100</span></p>
+                                <p>$<span class="unit-price3" id="concierge_distro_tab_platform_fee">100</span></p>
                             </div>
                         </div>
                         <!-- .column-->
@@ -227,32 +241,42 @@ let html = `
                                 <h3>Users</h3>
                             </div>
                             <div class="float-right">
-                                <p><span class="price__value price__value--standard2 fw-bold">x</span>$<span class="unit-price4">40</span> per user</p>
+                                <p><span class="price__value price__value--standard2 fw-bold" id="concierge_distro_tab_users">x</span>$<span class="unit-price4">70</span> per user</p>
                             </div>
                         </div>
                         <!-- .column-->
                     </div>
-                    <div class="price__box--repeat price__box--booker" style="display: none;">
+
+
+
+                   
+
+                    <div class="price__box--repeat price__box--handoff" style="display: none;">
+                        <h4> Handoff </h4>
+                        <div class="price__box--column">
+                            <div class="float-left">
+                                <h3>Users</h3>
+                            </div>
+                            <div class="float-right">
+                                <p><span class="price__value price__value--standard3 fw-bold" id="handoff_tab_users">x</span>$<span class="unit-price6">25</span> per user</p>
+                            </div>
+                        </div>
+                       
+                    </div>
+
+                     <div class="price__box--repeat price__box--booker" style="display: none;">
                         <h4>Instant booker</h4>
                         <div class="price__box--column">
                             <div class="float-left">
-                                <h3>Spicy</h3>
+                                <h3>Price</h3>
                             </div>
                             <div class="float-right">
-                                <p><span class="price__value price__value--standard3 fw-bold">x</span>$<span class="unit-price6">15</span> per user</p>
+                                <p><span class="price__value price__value--standard3 fw-bold" id="instant_booker_tab_users">x</span>$<span class="unit-price6">15</span> per user</p>
                             </div>
                         </div>
-                        <!-- .column-->
-                        <div class="price__box--column">
-                            <div class="float-left">
-                                <h3>Hot</h3>
-                            </div>
-                            <div class="float-right">
-                                <p><span class="price__value price__value--standard4 fw-bold">x</span>$<span class="unit-price5">15</span> per user</p>
-                            </div>
-                        </div>
-                        <!-- .column-->
+                       
                     </div>
+
                     <div class="price__box--repeat price__box--events" style="display: none;">
                         <h4>Events</h4>
                         <div class="price__box--column">
@@ -260,7 +284,7 @@ let html = `
                                 <h3>Platform Fee<span class="h3 price__platform-label"></span></h3>
                             </div>
                             <div class="float-right">
-                                <p>$<span class="unit-price7">100</span></p>
+                                <p>$<span class="unit-price7" id="events_tab_platform_fee">100</span></p>
                             </div>
                         </div>
                         <!-- .column-->
@@ -269,12 +293,16 @@ let html = `
                                 <h3>Users</h3>
                             </div>
                             <div class="float-right">
-                                <p><span class="price__value price__value--standard5 fw-bold">x</span>$<span class="unit-price8">30</span> per user</p>
+                                <p><span class="price__value price__value--standard5 fw-bold" id="events_tab_users">x</span>$<span class="unit-price8">20</span> per user</p>
                             </div>
                         </div>
                         <!-- .column-->
                     </div>
+
+
                     <a href="/request-demo" class="button button--primary tt-upper">Book a Demo</a>
+
+
                 </div>
                 <!-- .box-->
             </div>
@@ -285,14 +313,6 @@ let html = `
 
 `;
 
-
-
-
-// toggle dropdowns
-
-$(document).on('click', '.price__calc-2b h4', function () {
-	$(this).parent().toggleClass('active');
-});
 
 
 $(".get-calc-from-js").html(html);
@@ -308,28 +328,20 @@ $(document).on('click', '.price__calc-2b h4', function() {
 
 
 
-$(document).on('keydown', seats_default, function(e) {
-    if (e.keyCode == 8 || e.keyCode == 9 || (e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) {} else {
-        e.preventDefault()
-        return false
+
+$('#meetings .switch input').on('change', function() {
+	let x = $(this).attr("price-data");
+    if ($(this).is(':checked')) {
+        $(this).closest(".content").find("input").removeAttr('readonly');
+        $(x).show();
+    } else {
+        $(this).closest(".content").find("input").attr('readonly', 'readonly');
+        $(x).hide();
     }
+
 })
 
 
-
-
-
-// $('#checkked-1').on('change', function() {
-//     if ($(this).is(':checked')) {
-//         seats.removeAttr('readonly')
-//         seats1.removeAttr('readonly')
-//         conciergeLine.show()
-//     } else {
-//         seats.attr('readonly', 'readonly')
-//         seats1.attr('readonly', 'readonly')
-//         conciergeLine.hide()
-//     }
-// })
 
 
 
@@ -362,25 +374,142 @@ function events_platform_fee(users) {
 
 // CALCULATE ALL TABS
 
+function calculate_prices() {
 
-let concierge_tab_platform_fee = concierge_platform_fee( $("#concierge_volume").val() );
-let concierge_tab_users = user_x_price( $("#concierge_users").val(), 50);
+	// calculate all , no matter if they are disabled
 
-
-let distro_tab_users = user_x_price( $("#concierge_users").val(), 30);
-
-
-let concierge_distro_tab_platform_fee = concierge_platform_fee( $("#distro_concierge_volume").val() );
-let concierge_distro_tab_users = user_x_price( $("#distro_concierge_users").val(), 70);
+	let concierge_tab_platform_fee = concierge_platform_fee( $("#concierge_volume").val() );
+	let concierge_tab_users = user_x_price( $("#concierge_users").val(), 50);
 
 
-let handoff_tab_users = user_x_price( $("#handoff_users").val(), 25);
+	let distro_tab_users = user_x_price( $("#distro_users").val(), 30);
 
 
-let instant_booker_tab_users = user_x_price( $("#instant_booker_users").val(), 15);
+	let concierge_distro_tab_platform_fee = concierge_platform_fee( $("#distro_concierge_volume").val() );
+	let concierge_distro_tab_users = user_x_price( $("#distro_concierge_users").val(), 70);
 
 
-let events_tab_platform_fee = events_platform_fee( $("#events_users").val() );
-let events_tab_users = user_x_price( $("#events_users").val(), 20);
+	let handoff_tab_users = user_x_price( $("#handoff_users").val(), 25);
+
+	let instant_booker_tab_users = user_x_price( $("#instant_booker_users").val(), 15);
+
+	let events_tab_platform_fee = events_platform_fee( $("#events_users").val() );
+	let events_tab_users = user_x_price( $("#events_users").val(), 20);
 
 
+
+	// create a total price out of the prices that are not disabled
+	let total_price = 0;
+
+	if ( $("#concierge_volume").attr("readonly") == undefined ) {
+		total_price += concierge_tab_platform_fee + concierge_tab_users;
+	}
+
+	if ( $("#distro_users").attr("readonly") == undefined ) {
+		total_price += distro_tab_users;
+	}
+
+	if ( $("#distro_concierge_volume").attr("readonly") == undefined ) {
+		total_price += concierge_distro_tab_platform_fee + concierge_distro_tab_users;
+	}
+
+	if ( $("#handoff_users").attr("readonly") == undefined ) {
+		total_price += handoff_tab_users;
+	}
+
+	if ( $("#instant_booker_users").attr("readonly") == undefined ) {
+		total_price += instant_booker_tab_users;
+	}
+
+
+	if ( $("#events_users").attr("readonly") == undefined ) {
+		total_price += events_tab_platform_fee + events_tab_users;
+	}
+
+
+	// show final price, based on montly or annual payment
+	let finalRes = total_price;
+
+	let 
+	priceSave = $('.price__save'),
+    priceLabel = $('.price__label--standard'),
+    pricePlatformLabel = $('.price__platform-label');
+
+    let formatedSave;
+
+    if ($('input[name="plan"]:checked').val() == 'monthly') {
+	    priceLabel.html('per month')
+	    formatedSave = Math.ceil(finalRes - (finalRes * 0.66666667))
+	    priceSave.html(String(formatedSave).replace(/(.)(?=(\d{3})+$)/g,'$1,'))
+    } else {
+    	finalRes = Math.floor( finalRes * 0.66666667 );
+      	yearPrice = String(finalRes * 12).replace(/(.)(?=(\d{3})+$)/g,'$1,')
+      	priceLabel.html('per month (billed at $'+ yearPrice +' per year)')
+      	formatedSave = Math.ceil((finalRes / 0.66666667) - finalRes)
+      	priceSave.html(String(formatedSave).replace(/(.)(?=(\d{3})+$)/g,'$1,'))
+    }
+
+
+
+
+    if(isNaN(finalRes)) {
+      price.html('0')
+    } else {
+      $(".final-price").html(String(finalRes).replace(/(.)(?=(\d{3})+$)/g,'$1,'))
+    }
+
+
+
+
+	// Update visual data (each tab pricing under total price on the right side)
+	update_visual_data(	
+		concierge_tab_platform_fee,
+		$("#concierge_users").val(),
+		$("#distro_users").val(),
+		concierge_distro_tab_platform_fee,
+		$("#distro_concierge_users").val(),
+		$("#handoff_users").val(),
+		$("#instant_booker_users").val(),
+		events_tab_platform_fee,
+		$("#events_users").val()
+	);
+}
+
+
+
+
+
+
+function update_visual_data(
+	concierge_tab_platform_fee,
+	concierge_tab_users,
+	distro_tab_users,
+	concierge_distro_tab_platform_fee,
+	concierge_distro_tab_users,
+	handoff_tab_users,
+	instant_booker_tab_users,
+	events_tab_platform_fee,
+	events_tab_users
+) {
+
+	$("#concierge_tab_platform_fee").text(concierge_tab_platform_fee);
+	$("#concierge_tab_users").text("x"+concierge_tab_users);
+	$("#distro_tab_users").text("x"+distro_tab_users);
+	$("#concierge_distro_tab_platform_fee").text(concierge_distro_tab_platform_fee);
+	$("#concierge_distro_tab_users").text("x"+concierge_distro_tab_users);
+	$("#handoff_tab_users").text("x"+handoff_tab_users);
+	$("#instant_booker_tab_users").text("x"+instant_booker_tab_users);
+	$("#events_tab_platform_fee").text(events_tab_platform_fee);
+	$("#events_tab_users").text("x"+events_tab_users);
+}
+
+
+
+
+
+
+
+
+$('#meetings input').on('change keyup', function() {
+    calculate_prices();
+});
