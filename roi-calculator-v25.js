@@ -339,9 +339,10 @@ jQuery(document).ready(function($) {
     }
 
 
-    function success_ajax() {
+    function success_ajax(  percentageToParam = 0 ) {
 
-        let percentageToParam = 0;
+   
+
         let flag = true;
         let successData = '';
 
@@ -395,7 +396,6 @@ jQuery(document).ready(function($) {
             }
         })
 
-         console.log("BAD VALUE", some_value_bad );
       
         if ( some_value_bad ) {
             if ($('.alert').length == 0) {
@@ -421,30 +421,33 @@ jQuery(document).ready(function($) {
         } else {
 
 
+
+
+
             flag = true;
             $('.alert').remove();
-            $(".month-revenue").text("$" + data["investmetReturn"]);
-            $(".year-revenue").text("$" + data["investmetReturn"]*12);
-            $(".revenue-diff").text(data["returnPoints"] + "x");
-            $(".rate-from").text(data["percentageFrom"] + "%");
-            $(".rate-to").val(data["percentageTo"] + "%");
+            $(".month-revenue").text("$" + data["investmetReturn"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+            $(".year-revenue").text("$" + (data["investmetReturn"]*12).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") );
+            $(".revenue-diff").text(data["returnPoints"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "x");
+            $(".rate-from").text(data["percentageFrom"]);
+            $(".rate-to").val(data["percentageTo"]);
             if (percentageToParam == 0) {
-                $(".rate-to").attr('data-min', parseInt(data[3]) + 1);
+                $(".rate-to").attr('data-min', parseInt(data["percentageTo"]) + 1);
             }
-            $(".roi_leads_to").text(data[5]);
-            $(".roi_closed_deals").text(data[6]);
-            $(".roi_additional").text("$" + data["additionalEarn"]);
-            $(".roi_additional_year").text("$" + data["additionalEarn"]*12);
-            $(".roi_cost").text("$" + data["cost"]);
-            $(".roi_cost_add_month").text("$" + data["investmetReturn"]);
-            $(".roi_cost_add_year").text("$" + data["investmetReturn"]*12 );
+            $(".roi_leads_to").text(data["leadsTo"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+            $(".roi_closed_deals").text(data["closedDeals"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+            $(".roi_additional").text("$" + data["additionalEarn"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+            $(".roi_additional_year").text("$" + (data["additionalEarn"]*12).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+            $(".roi_cost").text("$" + data["cost"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+            $(".roi_cost_add_month").text("$" + data["investmetReturn"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+            $(".roi_cost_add_year").text("$" + ( data["investmetReturn"]*12).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") );
             $(".js-show-result").css({
                 opacity: 1,
                 visibility: 'visible',
                 height: 100 + '%'
             })
-            $("#chart_div").attr("data-one", data["percentageFrom"])
-            $("#chart_div").attr("data-two", data["percentageTo"])
+            $("#chart_div").attr("data-one", data["percentageFrom"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") )
+            $("#chart_div").attr("data-two", data["percentageTo"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") )
             $("#chart_div_finance").attr("data-one", bookedDemos * winRate / 100 * salesPrice)
             $("#chart_div_finance").attr("data-two", bookedDemos * winRate / 100 * salesPrice + additionalEarn)
           
@@ -453,8 +456,8 @@ jQuery(document).ready(function($) {
             successData = data;
           
             
-          
-            console.log("SEND HUBSPOT DATA");
+      
+
           
             
             $("[name='monthly_inbound_leads___roi_calc']").val(  $("[name='roi_leads']").val() );
@@ -498,15 +501,21 @@ jQuery(document).ready(function($) {
     })
 
     $(".rate-to").on('change', function() {
+
+
+
         const minValue = $(this).attr('data-min')
-        if ($(this).val() < minValue) {
+
+         console.log("AAA", minValue, $(this).val());
+
+        if ( parseInt ( $(this).val() ) <  parseInt ( minValue) ) {
             $(this).val('')
             if ($('.alert--small').length < 1) {
                 $(this).parent().append(`<span class="alert alert--small">The number must be higher or equal to ${minValue}<span>`)
             }
         } else {
             $('.alert--small').remove()
-            ajaxStart(parseInt($(this).val()))
+            success_ajax( parseInt($(this).val()) )
         }
     })
 
