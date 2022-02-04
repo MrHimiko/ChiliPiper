@@ -86,7 +86,7 @@ let html = `
           <div class="grid__column grid__column--12 grid__column--10@large">
             <div class="roi-results rois-results--next">
               <div class="paragraph paragraph--small text-center">
-                <p>Increasing your lead to meeting rate will lead to <span class="roi_leads_to"></span>, more booked meetings and <span class="roi_closed_deals"></span> more <br>closed deals per month.</p>
+                <p>Increasing your lead to meeting rate will lead to <span class="roi_leads_to"></span> more booked meetings and <span class="roi_closed_deals"></span> more <br>closed deals per month.</p>
               </div>
             </div>
           </div>
@@ -432,7 +432,7 @@ jQuery(document).ready(function($) {
             $(".rate-from").text(data["percentageFrom"]);
             $(".rate-to").val(data["percentageTo"]);
             if (percentageToParam == 0) {
-                $(".rate-to").attr('data-min', parseInt(data["percentageTo"]) + 1);
+                $(".rate-to").attr('data-min', 50);
             }
             $(".roi_leads_to").text(data["leadsTo"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
             $(".roi_closed_deals").text(data["closedDeals"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
