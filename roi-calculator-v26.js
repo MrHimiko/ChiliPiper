@@ -432,7 +432,7 @@ jQuery(document).ready(function($) {
             $(".rate-from").text(data["percentageFrom"]);
             $(".rate-to").val(data["percentageTo"]);
             if (percentageToParam == 0) {
-                $(".rate-to").attr('data-min', 50);
+                $(".rate-to").attr('data-min', 51);
             }
             $(".roi_leads_to").text(data["leadsTo"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
             $(".roi_closed_deals").text(data["closedDeals"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
