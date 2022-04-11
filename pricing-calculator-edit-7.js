@@ -132,7 +132,7 @@ let instant_booker = `
 
 
 let events_calc = 
-`<div class="price__calc price__calc-event price__calc-2b" style="display:none!important">
+`<div style="display:none!important"> <div class="price__calc price__calc-event price__calc-2b" >
     <h4>Events</h4>
     <div class="content">
         <div class="switch switch--horizontal switch--horizontal__checkbox">
@@ -148,7 +148,7 @@ let events_calc =
             </div>
         </div>
     </div>
-</div>
+</div> </div>
 `;
 
 
