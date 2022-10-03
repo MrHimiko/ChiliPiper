@@ -174,13 +174,13 @@ jQuery(document).ready(function($) {
     const submitBtn = $('#roi-calculate')
     const URL = window.location.href
 
-    $('input[type="text"]').on('keypress', function(e) {
+    $('.get-calc-from-js input[type="text"]').on('keypress', function(e) {
         if (e.keyCode > 31 && (e.keyCode < 48 || e.keyCode > 57)) {
             return false
         }
     })
 
-    $('input[type="text"]').on('keyup', function(e) {
+    $('.get-calc-from-js input[type="text"]').on('keyup', function(e) {
         let fieldValue = $(this).val().replace(/,/gi, "")
         let newFieldValue = fieldValue.split(/(?=(?:\d{3})+$)/).join(",")
         $(this).val(newFieldValue)
