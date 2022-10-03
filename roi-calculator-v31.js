@@ -487,6 +487,12 @@ jQuery(document).ready(function($) {
 
         window.history.pushState({}, 'ROI Calculated', `${URL}`);
         window.history.replaceState({}, 'ROI Calculated', `${URL}/#calculate`);
+      
+        setTimeout(function()
+        {
+          window.history.replaceState({}, 'ROI Calculated', `${URL}`);
+        }, 500);
+      
         $('#roi-calculate').text('Calculate')
         if (flag) {
             drawTrendlines(successData[3], successData[4], 'chart_div');
