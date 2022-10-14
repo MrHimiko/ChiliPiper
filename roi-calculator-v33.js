@@ -312,7 +312,7 @@ jQuery(document).ready(function($) {
         //console.log(fromPercent);
         if (fromPercent <= 10) {
             return 20;
-        } else if (fromPercent >= 11 && fromPercent <= 20) {
+        } else if (fromPercent > 10 && fromPercent <= 20) {
             return 40;
         } else if (fromPercent > 20 && fromPercent <= 30) {
             return 60;
