@@ -378,6 +378,11 @@ jQuery(document).ready(function($) {
             returnPoints: Math.round(investmetReturn / costCalc(inBoundLeads, salesReps)),
             inBoundMonthly: bookedDemos * winRate / 100 * salesPrice
         }
+        
+        console.log(data);
+        console.log(percentageToParam);
+        console.log(bookedDemos, inBoundLeads);
+        console.log(percentageCalc(bookedDemos, inBoundLeads));
 
 
         let some_value_bad = false;
