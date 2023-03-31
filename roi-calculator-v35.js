@@ -415,7 +415,8 @@ jQuery(document).ready(function($) {
                     visibility: 'hidden',
                     height: 0,
                     display: 'block'
-                })
+                });
+                $(".js-show-result").removeClass('hidden');
             }
             return false
         } else if ( bookdemos_bigger ) {
