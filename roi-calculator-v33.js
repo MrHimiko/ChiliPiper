@@ -413,7 +413,8 @@ jQuery(document).ready(function($) {
                 $(".js-show-result").css({
                     opacity: 0,
                     visibility: 'hidden',
-                    height: 0
+                    height: 0,
+                    display: 'block'
                 })
             }
             return false
