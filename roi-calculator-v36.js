@@ -414,9 +414,7 @@ jQuery(document).ready(function($) {
                     opacity: 0,
                     visibility: 'hidden',
                     height: 0,
-                    display: 'block'
                 });
-                $(".js-show-result").removeClass('hidden');
             }
             return false
         } else if ( bookdemos_bigger ) {
@@ -459,7 +457,8 @@ jQuery(document).ready(function($) {
             $(".js-show-result").css({
                 opacity: 1,
                 visibility: 'visible',
-                height: 100 + '%'
+                height: 100 + '%',
+                display: 'block'
             })
             $("#chart_div").attr("data-one", data["percentageFrom"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") )
             $("#chart_div").attr("data-two", data["percentageTo"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") )
