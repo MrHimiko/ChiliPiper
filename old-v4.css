@@ -1,9 +1,9 @@
 
-.wrapper {
+.page-template-page-pricing-calculator .wrapper {
   padding-left: 40px;
   padding-right: 40px; }
 
-.grid {
+.page-template-page-pricing-calculator .grid {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -476,17 +476,17 @@
   .grid--grid {
     display: grid; }
 
-.heading {
+.page-template-page-pricing-calculator .heading {
   margin: 0; }
 
-.paragraph {
+.page-template-page-pricing-calculator .paragraph {
   margin: 0; }
 
 @media (min-width: 980px) {
   .mt-0 {
     margin-top: 0 !important; } }
 
-.list {
+.page-template-page-pricing-calculator .list {
   padding: 0;
   list-style: none; }
 
@@ -508,7 +508,7 @@
       padding-top: 2rem;
       padding-bottom: 3rem; } }
   @media (max-width: 480px) {
-    .navbar {
+    .page-template-page-pricing-calculator .navbar {
       padding-top: 2rem; } }
   .navbar--portfolio .menu--buttons {
     margin-left: 4rem; }
@@ -517,7 +517,7 @@
     .navbar--portfolio .menu--buttons img {
       -webkit-filter: invert(100%) sepia(91%) saturate(0%) hue-rotate(276deg) brightness(106%) contrast(106%);
       filter: invert(100%) sepia(91%) saturate(0%) hue-rotate(276deg) brightness(106%) contrast(106%); }
-  .navbar__body {
+  .page-template-page-pricing-calculator .navbar__body {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -608,7 +608,7 @@
     transform: translateY(0);
     opacity: 1; }
 
-.logo {
+.page-template-page-pricing-calculator .logo {
   display: inline-block;
   position: relative; }
   .logo svg {
@@ -663,7 +663,7 @@
   .logo:hover .logo__tooltip {
     opacity: 1; }
 
-.menu {
+.page-template-page-pricing-calculator .menu {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -675,36 +675,36 @@
   -ms-flex-align: center;
   align-items: center; }
   @media (min-width: 980px) {
-    .menu {
+    .page-template-page-pricing-calculator .menu {
       -webkit-box-orient: horizontal;
       -webkit-box-direction: normal;
       -ms-flex-direction: row;
       flex-direction: row; } }
   @media (min-width: 980px) {
-    .menu > * + * {
+    .page-template-page-pricing-calculator .menu > * + * {
       margin-left: 1rem; } }
   @media (min-width: 1100px) {
-    .menu > * + * {
+    .page-template-page-pricing-calculator .menu > * + * {
       margin-left: 2rem; } }
   @media (min-width: 1250px) {
-    .menu > * + * {
+    .page-template-page-pricing-calculator .menu > * + * {
       margin-left: 3.5rem; } }
   @media (max-width: 1600px) {
-    .menu > * + * {
+    .page-template-page-pricing-calculator .menu > * + * {
       margin-left: 2.5rem; } }
   @media (max-width: 1400px) {
-    .menu > * + * {
+    .page-template-page-pricing-calculator .menu > * + * {
       margin-left: 1.5rem; } }
   @media (max-width: 1050px) {
-    .menu > * + * {
+    .page-template-page-pricing-calculator .menu > * + * {
       margin-left: .5rem; } }
   @media (min-width: 980px) {
-    .menu--buttons li:last-child {
+    .page-template-page-pricing-calculator .menu--buttons li:last-child {
       margin-left: 1.5rem; } }
   @media (max-width: 1250px) {
-    .menu--buttons li:last-child {
+    .page-template-page-pricing-calculator .menu--buttons li:last-child {
       margin-left: .5rem; } }
-  .menu > .menu-item-has-children::after {
+  .page-template-page-pricing-calculator .menu > .menu-item-has-children::after {
     content: "";
     background: url("../images/icons/arrow-right.svg") no-repeat;
     background-size: 100%;
@@ -718,12 +718,12 @@
     position: relative;
     top: 0; }
     @media (max-width: 980px) {
-      .menu > .menu-item-has-children::after {
+      .page-template-page-pricing-calculator .menu > .menu-item-has-children::after {
         display: none; } }
     .navbar--reverse .menu > .menu-item-has-children::after {
       -webkit-filter: brightness(0) invert(1);
       filter: brightness(0) invert(1); }
-  .menu > li {
+  .page-template-page-pricing-calculator .menu > li {
     position: relative;
     font-size: .8rem;
     font-family: "Rubik", sans-serif;
@@ -743,7 +743,7 @@
       -webkit-transition: .3s linear;
       -o-transition: .3s linear;
       transition: .3s linear; }
-    .menu > li ul {
+    .page-template-page-pricing-calculator .menu > li ul {
       padding: 2rem 3rem;
       background-color: #fff;
       -webkit-box-shadow: 0 40px 110px 0 rgba(0, 0, 0, 0.1);
@@ -761,14 +761,14 @@
           .menu > li ul li a:hover {
             color: #ff5722; }
     @media (min-width: 980px) {
-      .menu > li:hover > div {
+      .page-template-page-pricing-calculator .menu > li:hover > div {
         max-height: 340px;
         opacity: 1;
         visibility: visible;
         -webkit-transform: scale(1);
         -ms-transform: scale(1);
         transform: scale(1); } }
-  .menu .mega-menu > div {
+  .page-template-page-pricing-calculator .menu .mega-menu > div {
     min-width: 424px;
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
@@ -1015,7 +1015,7 @@
       padding: 0;
       list-style: none; }
 
-.button {
+.page-template-page-pricing-calculator .button {
   position: relative;
   z-index: 0;
   display: -webkit-inline-box;
@@ -1041,13 +1041,13 @@
   -o-transition: .3s;
   transition: .3s; }
   @media (min-width: 980px) and (max-width: 1199px) {
-    .button {
+    .page-template-page-pricing-calculator .button {
       padding-left: 2em;
       padding-right: 2em; } }
-  .button--small {
+  .page-template-page-pricing-calculator .button--small {
     padding: .7em 1.8em;
     font-size: .72rem; }
-    .button--small.button--wider {
+    .page-template-page-pricing-calculator .button--small.button--wider {
       padding-left: 2.3em;
       padding-right: 2.3em; }
   .button--wider {
@@ -1108,7 +1108,7 @@
     .button--black:hover {
       background-color: #ff5722; }
 
-.button-menu {
+.page-template-page-pricing-calculator .button-menu {
   position: relative;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -1116,7 +1116,7 @@
   width: 30px;
   height: 17px; }
   @media (min-width: 980px) {
-    .button-menu {
+    .page-template-page-pricing-calculator .button-menu {
       display: none; } }
   .button-menu span {
     display: block;
